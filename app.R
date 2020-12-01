@@ -1,7 +1,6 @@
 library(tidyverse)
 library(shiny)
 library(caret)
-library(data.table)
 
 # Read data 
 datacomplete = read_csv("./datacomplete.csv") %>%
@@ -77,7 +76,7 @@ ui = fluidPage(headerPanel('COVID-19 Pediatric Hospitalization Risk Predictor'),
 # Server                           #
 ####################################
 
-server = function(input, output, session) {
+shinyServer(function(input, output, session) {
   
   # Input Data
   datasetInput = reactive({  
@@ -122,9 +121,5 @@ server = function(input, output, session) {
     } 
   })
   
-}
+})
 
-####################################
-# Create the shiny app             #
-####################################
-shinyApp(ui = ui, server = server)
